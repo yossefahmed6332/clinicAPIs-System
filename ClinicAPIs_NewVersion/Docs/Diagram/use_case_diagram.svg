@@ -1,0 +1,246 @@
+<svg width="100%" viewBox="0 0 1640 1122" xmlns="http://www.w3.org/2000/svg" role="img">
+	<title>Use case diagram - Clinic Management System</title>
+	<desc>UML use case diagram showing Patient, Doctor, Nurse, Receptionist, Accountant and Manager actors with their associated system use cases, plus cross-cutting security and access-control use cases.</desc>
+	<defs>
+		<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+			<path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+		</marker>
+	</defs>
+	<rect x="0" y="0" width="1640" height="1122" fill="#FFFFFF"/>
+	<text x="820.0" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#26215C">Clinic Management System — Use Case Diagram</text>
+	<rect x="60" y="180" width="1520" height="712" rx="10" fill="#FAFAF8" stroke="#5F5E5A" stroke-width="1.2"/>
+	<text x="76" y="202" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#444441">Clinic Management System</text>
+	<circle cx="170.0" cy="60" r="10.0" fill="none" stroke="#444441" stroke-width="1.4"/>
+	<line x1="170.0" y1="70.0" x2="170.0" y2="94.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="156.0" y1="78.0" x2="184.0" y2="78.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="170.0" y1="94.0" x2="158.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="170.0" y1="94.0" x2="182.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<text x="170.0" y="128.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Patient</text>
+	<line x1="170.0" y1="128" x2="170.0" y2="180" stroke="#888780" stroke-width="1"/>
+	<ellipse cx="170.0" cy="233.0" rx="104.0" ry="23.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="231.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">Create account</text>
+	<text x="170.0" y="245.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-001</text>
+	<ellipse cx="170.0" cy="295.0" rx="104.0" ry="23.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="293.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">Log in / log out</text>
+	<text x="170.0" y="307.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-002</text>
+	<ellipse cx="170.0" cy="363.0" rx="104.0" ry="29.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="353.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">View available</text>
+	<text x="170.0" y="367.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">doctors</text>
+	<text x="170.0" y="381.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-003</text>
+	<ellipse cx="170.0" cy="437.0" rx="104.0" ry="29.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="427.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">Search doctors by</text>
+	<text x="170.0" y="441.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">availability &amp; specialty</text>
+	<text x="170.0" y="455.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-004</text>
+	<ellipse cx="170.0" cy="505.0" rx="104.0" ry="23.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="503.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">Book appointment</text>
+	<text x="170.0" y="517.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-005</text>
+	<ellipse cx="170.0" cy="567.0" rx="104.0" ry="23.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="565.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">View appointments</text>
+	<text x="170.0" y="579.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-006</text>
+	<ellipse cx="170.0" cy="629.0" rx="104.0" ry="23.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="627.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">Cancel appointment</text>
+	<text x="170.0" y="641.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-007</text>
+	<ellipse cx="170.0" cy="697.0" rx="104.0" ry="29.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="687.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">Reschedule</text>
+	<text x="170.0" y="701.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">appointment</text>
+	<text x="170.0" y="715.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-008</text>
+	<ellipse cx="170.0" cy="771.0" rx="104.0" ry="29.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="761.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">View medical</text>
+	<text x="170.0" y="775.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">records</text>
+	<text x="170.0" y="789.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-009</text>
+	<ellipse cx="170.0" cy="839.0" rx="104.0" ry="23.0" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+	<text x="170.0" y="837.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0C447C">View prescriptions</text>
+	<text x="170.0" y="851.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C447C">FR-010</text>
+	<line x1="170.0" y1="180" x2="170.0" y2="233.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="295.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="363.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="437.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="505.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="567.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="629.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="697.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="771.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<line x1="170.0" y1="180" x2="170.0" y2="839.0" stroke="#185FA5" stroke-width="0.6" opacity="0.55"/>
+	<circle cx="430.0" cy="60" r="10.0" fill="none" stroke="#444441" stroke-width="1.4"/>
+	<line x1="430.0" y1="70.0" x2="430.0" y2="94.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="416.0" y1="78.0" x2="444.0" y2="78.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="430.0" y1="94.0" x2="418.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="430.0" y1="94.0" x2="442.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<text x="430.0" y="128.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Doctor</text>
+	<line x1="430.0" y1="128" x2="430.0" y2="180" stroke="#888780" stroke-width="1"/>
+	<ellipse cx="430.0" cy="239.0" rx="104.0" ry="29.0" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+	<text x="430.0" y="229.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">View daily</text>
+	<text x="430.0" y="243.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">appointments</text>
+	<text x="430.0" y="257.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#085041">FR-011</text>
+	<ellipse cx="430.0" cy="313.0" rx="104.0" ry="29.0" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+	<text x="430.0" y="303.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">View patient</text>
+	<text x="430.0" y="317.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">medical records</text>
+	<text x="430.0" y="331.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#085041">FR-012</text>
+	<ellipse cx="430.0" cy="381.0" rx="104.0" ry="23.0" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+	<text x="430.0" y="379.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">View exam results</text>
+	<text x="430.0" y="393.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#085041">FR-013</text>
+	<ellipse cx="430.0" cy="443.0" rx="104.0" ry="23.0" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+	<text x="430.0" y="441.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">Record diagnoses</text>
+	<text x="430.0" y="455.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#085041">FR-014</text>
+	<ellipse cx="430.0" cy="505.0" rx="104.0" ry="23.0" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+	<text x="430.0" y="503.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">Create prescriptions</text>
+	<text x="430.0" y="517.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#085041">FR-015</text>
+	<ellipse cx="430.0" cy="573.0" rx="104.0" ry="29.0" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+	<text x="430.0" y="563.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">Update medical</text>
+	<text x="430.0" y="577.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#085041">records</text>
+	<text x="430.0" y="591.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#085041">FR-016</text>
+	<line x1="430.0" y1="180" x2="430.0" y2="239.0" stroke="#0F6E56" stroke-width="0.6" opacity="0.55"/>
+	<line x1="430.0" y1="180" x2="430.0" y2="313.0" stroke="#0F6E56" stroke-width="0.6" opacity="0.55"/>
+	<line x1="430.0" y1="180" x2="430.0" y2="381.0" stroke="#0F6E56" stroke-width="0.6" opacity="0.55"/>
+	<line x1="430.0" y1="180" x2="430.0" y2="443.0" stroke="#0F6E56" stroke-width="0.6" opacity="0.55"/>
+	<line x1="430.0" y1="180" x2="430.0" y2="505.0" stroke="#0F6E56" stroke-width="0.6" opacity="0.55"/>
+	<line x1="430.0" y1="180" x2="430.0" y2="573.0" stroke="#0F6E56" stroke-width="0.6" opacity="0.55"/>
+	<circle cx="690.0" cy="60" r="10.0" fill="none" stroke="#444441" stroke-width="1.4"/>
+	<line x1="690.0" y1="70.0" x2="690.0" y2="94.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="676.0" y1="78.0" x2="704.0" y2="78.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="690.0" y1="94.0" x2="678.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="690.0" y1="94.0" x2="702.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<text x="690.0" y="128.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Nurse</text>
+	<line x1="690.0" y1="128" x2="690.0" y2="180" stroke="#888780" stroke-width="1"/>
+	<ellipse cx="690.0" cy="239.0" rx="104.0" ry="29.0" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+	<text x="690.0" y="229.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">View assigned</text>
+	<text x="690.0" y="243.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">daily appointments</text>
+	<text x="690.0" y="257.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#3C3489">FR-017</text>
+	<ellipse cx="690.0" cy="313.0" rx="104.0" ry="29.0" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+	<text x="690.0" y="303.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">Access assigned</text>
+	<text x="690.0" y="317.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">patient records</text>
+	<text x="690.0" y="331.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#3C3489">FR-018</text>
+	<ellipse cx="690.0" cy="381.0" rx="104.0" ry="23.0" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+	<text x="690.0" y="379.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">Record vital signs</text>
+	<text x="690.0" y="393.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#3C3489">FR-019</text>
+	<ellipse cx="690.0" cy="449.0" rx="104.0" ry="29.0" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+	<text x="690.0" y="439.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">Record exam</text>
+	<text x="690.0" y="453.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">results</text>
+	<text x="690.0" y="467.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#3C3489">FR-020</text>
+	<ellipse cx="690.0" cy="523.0" rx="104.0" ry="29.0" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+	<text x="690.0" y="513.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">Update record with</text>
+	<text x="690.0" y="527.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3C3489">exam results</text>
+	<text x="690.0" y="541.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#3C3489">FR-021</text>
+	<line x1="690.0" y1="180" x2="690.0" y2="239.0" stroke="#534AB7" stroke-width="0.6" opacity="0.55"/>
+	<line x1="690.0" y1="180" x2="690.0" y2="313.0" stroke="#534AB7" stroke-width="0.6" opacity="0.55"/>
+	<line x1="690.0" y1="180" x2="690.0" y2="381.0" stroke="#534AB7" stroke-width="0.6" opacity="0.55"/>
+	<line x1="690.0" y1="180" x2="690.0" y2="449.0" stroke="#534AB7" stroke-width="0.6" opacity="0.55"/>
+	<line x1="690.0" y1="180" x2="690.0" y2="523.0" stroke="#534AB7" stroke-width="0.6" opacity="0.55"/>
+	<circle cx="950.0" cy="60" r="10.0" fill="none" stroke="#444441" stroke-width="1.4"/>
+	<line x1="950.0" y1="70.0" x2="950.0" y2="94.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="936.0" y1="78.0" x2="964.0" y2="78.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="950.0" y1="94.0" x2="938.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="950.0" y1="94.0" x2="962.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<text x="950.0" y="128.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Receptionist</text>
+	<line x1="950.0" y1="128" x2="950.0" y2="180" stroke="#888780" stroke-width="1"/>
+	<ellipse cx="950.0" cy="239.0" rx="104.0" ry="29.0" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+	<text x="950.0" y="229.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">Register new</text>
+	<text x="950.0" y="243.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">patients</text>
+	<text x="950.0" y="257.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#712B13">FR-022</text>
+	<ellipse cx="950.0" cy="313.0" rx="104.0" ry="29.0" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+	<text x="950.0" y="303.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">View available</text>
+	<text x="950.0" y="317.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">doctors</text>
+	<text x="950.0" y="331.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#712B13">FR-023</text>
+	<ellipse cx="950.0" cy="387.0" rx="104.0" ry="29.0" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+	<text x="950.0" y="377.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">Book appointments</text>
+	<text x="950.0" y="391.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">for patients</text>
+	<text x="950.0" y="405.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#712B13">FR-024</text>
+	<ellipse cx="950.0" cy="461.0" rx="104.0" ry="29.0" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+	<text x="950.0" y="451.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">Reschedule</text>
+	<text x="950.0" y="465.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">appointments</text>
+	<text x="950.0" y="479.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#712B13">FR-025</text>
+	<ellipse cx="950.0" cy="529.0" rx="104.0" ry="23.0" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+	<text x="950.0" y="527.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">Cancel appointments</text>
+	<text x="950.0" y="541.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#712B13">FR-026</text>
+	<ellipse cx="950.0" cy="597.0" rx="104.0" ry="29.0" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+	<text x="950.0" y="587.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">View patient</text>
+	<text x="950.0" y="601.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">appointments</text>
+	<text x="950.0" y="615.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#712B13">FR-027</text>
+	<ellipse cx="950.0" cy="671.0" rx="104.0" ry="29.0" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+	<text x="950.0" y="661.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">Record arrival /</text>
+	<text x="950.0" y="675.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#712B13">check-in</text>
+	<text x="950.0" y="689.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#712B13">FR-028</text>
+	<line x1="950.0" y1="180" x2="950.0" y2="239.0" stroke="#993C1D" stroke-width="0.6" opacity="0.55"/>
+	<line x1="950.0" y1="180" x2="950.0" y2="313.0" stroke="#993C1D" stroke-width="0.6" opacity="0.55"/>
+	<line x1="950.0" y1="180" x2="950.0" y2="387.0" stroke="#993C1D" stroke-width="0.6" opacity="0.55"/>
+	<line x1="950.0" y1="180" x2="950.0" y2="461.0" stroke="#993C1D" stroke-width="0.6" opacity="0.55"/>
+	<line x1="950.0" y1="180" x2="950.0" y2="529.0" stroke="#993C1D" stroke-width="0.6" opacity="0.55"/>
+	<line x1="950.0" y1="180" x2="950.0" y2="597.0" stroke="#993C1D" stroke-width="0.6" opacity="0.55"/>
+	<line x1="950.0" y1="180" x2="950.0" y2="671.0" stroke="#993C1D" stroke-width="0.6" opacity="0.55"/>
+	<circle cx="1210.0" cy="60" r="10.0" fill="none" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1210.0" y1="70.0" x2="1210.0" y2="94.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1196.0" y1="78.0" x2="1224.0" y2="78.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1210.0" y1="94.0" x2="1198.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1210.0" y1="94.0" x2="1222.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<text x="1210.0" y="128.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Accountant</text>
+	<line x1="1210.0" y1="128" x2="1210.0" y2="180" stroke="#888780" stroke-width="1"/>
+	<ellipse cx="1210.0" cy="239.0" rx="104.0" ry="29.0" fill="#FBEAF0" stroke="#993556" stroke-width="1"/>
+	<text x="1210.0" y="229.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">Create financial</text>
+	<text x="1210.0" y="243.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">operations</text>
+	<text x="1210.0" y="257.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#72243E">FR-029</text>
+	<ellipse cx="1210.0" cy="313.0" rx="104.0" ry="29.0" fill="#FBEAF0" stroke="#993556" stroke-width="1"/>
+	<text x="1210.0" y="303.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">View &amp; check</text>
+	<text x="1210.0" y="317.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">financial operations</text>
+	<text x="1210.0" y="331.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#72243E">FR-030</text>
+	<ellipse cx="1210.0" cy="387.0" rx="104.0" ry="29.0" fill="#FBEAF0" stroke="#993556" stroke-width="1"/>
+	<text x="1210.0" y="377.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">Record patient</text>
+	<text x="1210.0" y="391.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">payments</text>
+	<text x="1210.0" y="405.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#72243E">FR-031</text>
+	<ellipse cx="1210.0" cy="461.0" rx="104.0" ry="29.0" fill="#FBEAF0" stroke="#993556" stroke-width="1"/>
+	<text x="1210.0" y="451.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">Generate financial</text>
+	<text x="1210.0" y="465.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">reports</text>
+	<text x="1210.0" y="479.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#72243E">FR-032</text>
+	<ellipse cx="1210.0" cy="535.0" rx="104.0" ry="29.0" fill="#FBEAF0" stroke="#993556" stroke-width="1"/>
+	<text x="1210.0" y="525.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">Calculate monthly</text>
+	<text x="1210.0" y="539.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">income</text>
+	<text x="1210.0" y="553.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#72243E">FR-033</text>
+	<ellipse cx="1210.0" cy="609.0" rx="104.0" ry="29.0" fill="#FBEAF0" stroke="#993556" stroke-width="1"/>
+	<text x="1210.0" y="599.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">Calculate &amp; manage</text>
+	<text x="1210.0" y="613.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#72243E">salaries</text>
+	<text x="1210.0" y="627.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#72243E">FR-034</text>
+	<line x1="1210.0" y1="180" x2="1210.0" y2="239.0" stroke="#993556" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1210.0" y1="180" x2="1210.0" y2="313.0" stroke="#993556" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1210.0" y1="180" x2="1210.0" y2="387.0" stroke="#993556" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1210.0" y1="180" x2="1210.0" y2="461.0" stroke="#993556" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1210.0" y1="180" x2="1210.0" y2="535.0" stroke="#993556" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1210.0" y1="180" x2="1210.0" y2="609.0" stroke="#993556" stroke-width="0.6" opacity="0.55"/>
+	<circle cx="1470.0" cy="60" r="10.0" fill="none" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1470.0" y1="70.0" x2="1470.0" y2="94.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1456.0" y1="78.0" x2="1484.0" y2="78.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1470.0" y1="94.0" x2="1458.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<line x1="1470.0" y1="94.0" x2="1482.0" y2="112.0" stroke="#444441" stroke-width="1.4"/>
+	<text x="1470.0" y="128.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Manager</text>
+	<line x1="1470.0" y1="128" x2="1470.0" y2="180" stroke="#888780" stroke-width="1"/>
+	<ellipse cx="1470.0" cy="239.0" rx="104.0" ry="29.0" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+	<text x="1470.0" y="229.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">View system info</text>
+	<text x="1470.0" y="243.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">per permissions</text>
+	<text x="1470.0" y="257.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#633806">FR-035</text>
+	<ellipse cx="1470.0" cy="313.0" rx="104.0" ry="29.0" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+	<text x="1470.0" y="303.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">Create user</text>
+	<text x="1470.0" y="317.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">accounts</text>
+	<text x="1470.0" y="331.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#633806">FR-036</text>
+	<ellipse cx="1470.0" cy="387.0" rx="104.0" ry="29.0" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+	<text x="1470.0" y="377.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">Delete / deactivate</text>
+	<text x="1470.0" y="391.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">accounts</text>
+	<text x="1470.0" y="405.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#633806">FR-037</text>
+	<ellipse cx="1470.0" cy="461.0" rx="104.0" ry="29.0" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+	<text x="1470.0" y="451.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">Manage roles &amp;</text>
+	<text x="1470.0" y="465.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#633806">permissions</text>
+	<text x="1470.0" y="479.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#633806">FR-038</text>
+	<line x1="1470.0" y1="180" x2="1470.0" y2="239.0" stroke="#854F0B" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1470.0" y1="180" x2="1470.0" y2="313.0" stroke="#854F0B" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1470.0" y1="180" x2="1470.0" y2="387.0" stroke="#854F0B" stroke-width="0.6" opacity="0.55"/>
+	<line x1="1470.0" y1="180" x2="1470.0" y2="461.0" stroke="#854F0B" stroke-width="0.6" opacity="0.55"/>
+	<rect x="60" y="932" width="1520" height="130" rx="10" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1" stroke-dasharray="6 4"/>
+	<text x="76" y="954" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#791F1F">Security &amp; access control (applies to all actors above)</text>
+	<ellipse cx="660.0" cy="1010" rx="124.0" ry="30" fill="#F7C1C1" stroke="#A32D2D" stroke-width="1"/>
+	<text x="660.0" y="1004" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#501313">Restrict access by</text>
+	<text x="660.0" y="1018" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#501313">user role</text>
+	<text x="660.0" y="1032" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#501313">FR-039</text>
+	<ellipse cx="980.0" cy="1010" rx="124.0" ry="30" fill="#F7C1C1" stroke="#A32D2D" stroke-width="1"/>
+	<text x="980.0" y="1004" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#501313">Prevent unauthorized</text>
+	<text x="980.0" y="1018" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="600" fill="#501313">access / modification</text>
+	<text x="980.0" y="1032" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#501313">FR-040</text>
+	<line x1="820.0" y1="892" x2="820.0" y2="932" stroke="#A32D2D" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+	<text x="828.0" y="912.0" font-family="Arial, sans-serif" font-size="10" font-style="italic" fill="#791F1F">&lt;&lt;include&gt;&gt;</text>
+</svg>

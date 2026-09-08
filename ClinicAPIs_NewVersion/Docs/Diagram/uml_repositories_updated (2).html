@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Repositories UML - Updated</title>
+<style>
+  body {
+    background: #ffffff;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    padding: 24px;
+    direction: ltr;
+  }
+  .board {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+  .card {
+    border: 1px solid #999;
+    border-radius: 2px;
+    overflow: hidden;
+    font-size: 11px;
+    background: #fff;
+  }
+  .card .header {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+  .card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .card li {
+    padding: 3px 8px;
+    border-top: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .patient  .header { background: #4a5568; }
+  .nurse    .header { background: #7a1f2b; }
+  .manager  .header { background: #2f6fb0; }
+  .support  .header { background: #d9534f; }
+  .support  { border-color: #e8b4b0; }
+  .support  .header { background: #e6b0aa; color: #5a1f18; }
+  .void { color: #999; font-style: italic; }
+  .ret  { color: #0a7a3d; font-weight: bold; }
+  .row1 { grid-column: span 1; }
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="card patient">
+    <div class="header">IPatientRepository</div>
+    <ul>
+      <li>+ICreatePatient(patient:Patient) : <span class="ret">Patient</span></li>
+      <li>+IGetAllPatient() : List&lt;Patient&gt;</li>
+      <li>+IGetPatient(id:int) : Patient</li>
+      <li>+IGetPatientDetails(id:int) : (List&lt;Appointment&gt;, List&lt;PaymentOperation&gt;)</li>
+      <li>+IUpdatePatient(patient:Patient) : <span class="ret">Patient</span></li>
+      <li>+IDeletePatient(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card patient">
+    <div class="header">IAdminRepository</div>
+    <ul>
+      <li>+ICreateAdmin(admin:Admin) : <span class="ret">Admin</span></li>
+      <li>+IGetAllAdmin() : List&lt;Admin&gt;</li>
+      <li>+IGetAdmin(id:int) : Admin</li>
+      <li>+IUpdateAdmin(admin:Admin) : <span class="ret">Admin</span></li>
+      <li>+IDeleteAdmin(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card"></div>
+  <div class="card"></div>
+
+  <div class="card nurse">
+    <div class="header">INurseRepository</div>
+    <ul>
+      <li>+ICreateNurse(nurse:Nurse) : <span class="ret">Nurse</span></li>
+      <li>+IGetAllNurse() : List&lt;Nurse&gt;</li>
+      <li>+IGetNurse(id:int) : Nurse</li>
+      <li>+IGetNurseDetails(id:int) : NurseDetails</li>
+      <li>+IUpdateNurse(nurse:Nurse) : <span class="ret">Nurse</span></li>
+      <li>+IDeleteNurse(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card nurse">
+    <div class="header">IDoctorRepository</div>
+    <ul>
+      <li>+ICreateDoctor(doctor:Doctor) : <span class="ret">Doctor</span></li>
+      <li>+IGetAllDoctor() : List&lt;Doctor&gt;</li>
+      <li>+IGetDoctor(id:int) : Doctor</li>
+      <li>+IGetDoctorDetails(id:int) : DoctorDetails</li>
+      <li>+IUpdateDoctor(doctor:Doctor) : <span class="ret">Doctor</span></li>
+      <li>+IDeleteDoctor(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card"></div>
+  <div class="card"></div>
+
+  <div class="card manager">
+    <div class="header">IManagerRepository</div>
+    <ul>
+      <li>+ICreateManager(manager:Manager) : <span class="ret">Manager</span></li>
+      <li>+IGetAllManager() : List&lt;Manager&gt;</li>
+      <li>+IGetManager(id:int) : Manager</li>
+      <li>+IUpdateManager(manager:Manager) : <span class="ret">Manager</span></li>
+      <li>+IDeleteManager(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card manager">
+    <div class="header">IReceptionistRepository</div>
+    <ul>
+      <li>+ICreateReceptionist(receptionist:Receptionist) : <span class="ret">Receptionist</span></li>
+      <li>+IGetAllReceptionist() : List&lt;Receptionist&gt;</li>
+      <li>+IGetReceptionist(id:int) : Receptionist</li>
+      <li>+IUpdateReceptionist(receptionist:Receptionist) : <span class="ret">Receptionist</span></li>
+      <li>+IDeleteReceptionist(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card manager">
+    <div class="header">IAccountantRepository</div>
+    <ul>
+      <li>+ICreateAccountant(accountant:Accountant) : <span class="ret">Accountant</span></li>
+      <li>+IGetAllAccountant() : List&lt;Accountant&gt;</li>
+      <li>+IGetAccountant(id:int) : Accountant</li>
+      <li>+IUpdateAccountant(accountant:Accountant) : <span class="ret">Accountant</span></li>
+      <li>+IDeleteAccountant(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card"></div>
+
+  <div class="card support">
+    <div class="header">IPaymentOperationRepository</div>
+    <ul>
+      <li>+ICreatePaymentOperation(paymentOperation:PaymentOperation) : <span class="ret">PaymentOperation</span></li>
+      <li>+IGetAllPaymentOperation() : List&lt;PaymentOperation&gt;</li>
+      <li>+IUpdatePaymentOperation(paymentOperation:PaymentOperation) : <span class="ret">PaymentOperation</span></li>
+      <li>+IDeletePaymentOperation(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card support">
+    <div class="header">IMedicalRecordRepository</div>
+    <ul>
+      <li>+ICreateMedicalRecord(medicalRecord:MedicalRecord) : <span class="ret">MedicalRecord</span></li>
+      <li>+IGetAllMedicalRecord() : List&lt;MedicalRecord&gt;</li>
+      <li>+IGetMedicalRecord(id:int) : MedicalRecord</li>
+      <li>+IGetMedicalRecordByPatientId(patientId:int) : MedicalRecord</li>
+      <li>+IUpdateMedicalRecord(medicalRecord:MedicalRecord) : <span class="ret">MedicalRecord</span></li>
+      <li>+IDeleteMedicalRecord(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card support">
+    <div class="header">IAppointmentRepository</div>
+    <ul>
+      <li>+ICreateAppointment(appointment:Appointment) : <span class="ret">Appointment</span></li>
+      <li>+IGetAllAppointment() : List&lt;Appointment&gt;</li>
+      <li>+IGetAppointment(id:int) : Appointment</li>
+      <li>+IGetAppointmentByStatus(status:AppointmentStatus) : List&lt;Appointment&gt;</li>
+      <li>+IUpdateAppointment(appointment:Appointment) : <span class="ret">Appointment</span></li>
+      <li>+IDeleteAppointment(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card support">
+    <div class="header">IPrescriptionRepository</div>
+    <ul>
+      <li>+ICreatePrescription(prescription:Prescription) : <span class="ret">Prescription</span></li>
+      <li>+IGetAllPrescription() : List&lt;Prescription&gt;</li>
+      <li>+IGetPrescription(id:int) : Prescription</li>
+      <li>+IGetPrescriptionByDoctorId(doctorId:int) : List&lt;Prescription&gt;</li>
+      <li>+IGetPrescriptionByPatientId(patientId:int) : List&lt;Prescription&gt;</li>
+      <li>+IUpdatePrescription(prescription:Prescription) : <span class="ret">Prescription</span></li>
+      <li>+IDeletePrescription(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card support">
+    <div class="header">IVitalSignsRepository</div>
+    <ul>
+      <li>+ICreateVitalSigns(vitalSigns:VitalSigns) : <span class="ret">VitalSigns</span></li>
+      <li>+IGetAllVitalSigns() : List&lt;VitalSigns&gt;</li>
+      <li>+IGetVitalSigns(id:int) : VitalSigns</li>
+      <li>+IGetVitalSignsByNurseId(nurseId:int) : List&lt;VitalSigns&gt;</li>
+      <li>+IGetVitalSignsByPatientId(patientId:int) : List&lt;VitalSigns&gt;</li>
+      <li>+IUpdateVitalSigns(vitalSigns:VitalSigns) : <span class="ret">VitalSigns</span></li>
+      <li>+IDeleteVitalSigns(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card support">
+    <div class="header">IExaminationResultRepository</div>
+    <ul>
+      <li>+ICreateExaminationResult(examinationResult:ExaminationResult) : <span class="ret">ExaminationResult</span></li>
+      <li>+IGetAllExaminationResult() : List&lt;ExaminationResult&gt;</li>
+      <li>+IGetExaminationResult(id:int) : ExaminationResult</li>
+      <li>+IGetExaminationResultByNurseId(nurseId:int) : List&lt;ExaminationResult&gt;</li>
+      <li>+IGetExaminationResultByPatientId(patientId:int) : List&lt;ExaminationResult&gt;</li>
+      <li>+IUpdateExaminationResult(examinationResult:ExaminationResult) : <span class="ret">ExaminationResult</span></li>
+      <li>+IDeleteExaminationResult(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+  <div class="card support">
+    <div class="header">IFinancialReportRepository</div>
+    <ul>
+      <li>+ICreateFinancialReport(financialReport:FinancialReport) : <span class="ret">FinancialReport</span></li>
+      <li>+IGetAllFinancialReport() : List&lt;FinancialReport&gt;</li>
+      <li>+IGetFinancialReport(id:int) : FinancialReport</li>
+      <li>+IGetFinancialReportByRange(min:decimal, max:decimal) : List&lt;FinancialReport&gt;</li>
+      <li>+IUpdateFinancialReport(financialReport:FinancialReport) : <span class="ret">FinancialReport</span></li>
+      <li>+IDeleteFinancialReport(id:int) : <span class="void">void</span></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

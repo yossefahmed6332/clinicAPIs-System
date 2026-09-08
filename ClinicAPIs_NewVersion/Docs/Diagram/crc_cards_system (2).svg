@@ -1,0 +1,176 @@
+<svg width="100%" viewBox="0 0 1400 913" xmlns="http://www.w3.org/2000/svg">
+<title>CRC Cards - Clinic Management System</title>
+<rect x="0" y="0" width="1400" height="913" fill="#FFFFFF"/>
+<text x="700.0" y="36" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#143642">CRC Cards - Clinic Management System</text>
+<rect x="40" y="60" width="420" height="242" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="40" y1="104" x2="460" y2="104" stroke="#A8201A" stroke-width="1.3"/>
+<text x="250.0" y="88.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Patient</text>
+<line x1="292.0" y1="104" x2="292.0" y2="302" stroke="#A8201A" stroke-width="1.3"/>
+<text x="54" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="302.0" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="54" y="137" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Create account</text>
+<text x="54" y="154" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Log in / log out</text>
+<text x="54" y="171" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View available doctors</text>
+<text x="54" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Search doctors by availability &amp; specialization</text>
+<text x="54" y="205" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Book appointment</text>
+<text x="54" y="222" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View appointments</text>
+<text x="54" y="239" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Cancel appointment</text>
+<text x="54" y="256" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Reschedule appointment</text>
+<text x="54" y="273" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View medical records</text>
+<text x="54" y="290" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View prescriptions</text>
+<text x="302.0" y="137" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Doctor</text>
+<text x="302.0" y="154" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Appointment</text>
+<text x="302.0" y="171" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">MedicalRecord</text>
+<text x="302.0" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Prescription</text>
+<rect x="490" y="60" width="420" height="174" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="490" y1="104" x2="910" y2="104" stroke="#A8201A" stroke-width="1.3"/>
+<text x="700.0" y="88.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Doctor</text>
+<line x1="742.0" y1="104" x2="742.0" y2="234" stroke="#A8201A" stroke-width="1.3"/>
+<text x="504" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="752.0" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="504" y="137" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View daily appointments</text>
+<text x="504" y="154" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View patient medical records</text>
+<text x="504" y="171" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View examination results</text>
+<text x="504" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Record patient diagnosis</text>
+<text x="504" y="205" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Create prescriptions</text>
+<text x="504" y="222" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Update patient medical records</text>
+<text x="752.0" y="137" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Appointment</text>
+<text x="752.0" y="154" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">MedicalRecord</text>
+<text x="752.0" y="171" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">ExaminationResult</text>
+<text x="752.0" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Prescription</text>
+<text x="752.0" y="205" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<rect x="940" y="60" width="420" height="157" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="940" y1="104" x2="1360" y2="104" stroke="#A8201A" stroke-width="1.3"/>
+<text x="1150.0" y="88.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Nurse</text>
+<line x1="1192.0" y1="104" x2="1192.0" y2="217" stroke="#A8201A" stroke-width="1.3"/>
+<text x="954" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="1202.0" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="954" y="137" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View daily assigned appointments</text>
+<text x="954" y="154" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Access records of assigned patients</text>
+<text x="954" y="171" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Record patient vital signs</text>
+<text x="954" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Record examination results</text>
+<text x="954" y="205" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Update medical record with exam results</text>
+<text x="1202.0" y="137" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Appointment</text>
+<text x="1202.0" y="154" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">MedicalRecord</text>
+<text x="1202.0" y="171" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">ExaminationResult</text>
+<text x="1202.0" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<rect x="40" y="332" width="420" height="191" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="40" y1="376" x2="460" y2="376" stroke="#A8201A" stroke-width="1.3"/>
+<text x="250.0" y="360.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Receptionist</text>
+<line x1="292.0" y1="376" x2="292.0" y2="523" stroke="#A8201A" stroke-width="1.3"/>
+<text x="54" y="392" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="302.0" y="392" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="54" y="409" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Register new patients</text>
+<text x="54" y="426" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View available doctors</text>
+<text x="54" y="443" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Book appointments for patients</text>
+<text x="54" y="460" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Reschedule appointments</text>
+<text x="54" y="477" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Cancel appointments</text>
+<text x="54" y="494" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View patient appointments</text>
+<text x="54" y="511" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Record patient arrival / check-in</text>
+<text x="302.0" y="409" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<text x="302.0" y="426" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Doctor</text>
+<text x="302.0" y="443" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Appointment</text>
+<rect x="490" y="332" width="420" height="174" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="490" y1="376" x2="910" y2="376" stroke="#A8201A" stroke-width="1.3"/>
+<text x="700.0" y="360.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Accountant</text>
+<line x1="742.0" y1="376" x2="742.0" y2="506" stroke="#A8201A" stroke-width="1.3"/>
+<text x="504" y="392" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="752.0" y="392" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="504" y="409" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Create financial operations</text>
+<text x="504" y="426" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View &amp; check financial operations</text>
+<text x="504" y="443" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Record patient payments</text>
+<text x="504" y="460" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Generate financial reports</text>
+<text x="504" y="477" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Calculate clinic's monthly income</text>
+<text x="504" y="494" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Calculate &amp; manage salaries</text>
+<text x="752.0" y="409" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Payment</text>
+<text x="752.0" y="426" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">FinancialReport</text>
+<text x="752.0" y="443" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<text x="752.0" y="460" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Manager</text>
+<rect x="940" y="332" width="420" height="157" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="940" y1="376" x2="1360" y2="376" stroke="#A8201A" stroke-width="1.3"/>
+<text x="1150.0" y="360.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Manager</text>
+<line x1="1192.0" y1="376" x2="1192.0" y2="489" stroke="#A8201A" stroke-width="1.3"/>
+<text x="954" y="392" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="1202.0" y="392" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="954" y="409" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-View system info per permissions</text>
+<text x="954" y="426" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Create staff user accounts</text>
+<text x="954" y="443" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Delete / deactivate user accounts</text>
+<text x="954" y="460" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Manage user roles &amp; permissions</text>
+<text x="1202.0" y="409" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">UserAccount</text>
+<text x="1202.0" y="426" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Doctor</text>
+<text x="1202.0" y="443" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Nurse</text>
+<text x="1202.0" y="460" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Accountant</text>
+<text x="1202.0" y="477" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Receptionist</text>
+<rect x="40" y="553" width="420" height="123" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="40" y1="597" x2="460" y2="597" stroke="#A8201A" stroke-width="1.3"/>
+<text x="250.0" y="581.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Appointment</text>
+<line x1="292.0" y1="597" x2="292.0" y2="676" stroke="#A8201A" stroke-width="1.3"/>
+<text x="54" y="613" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="302.0" y="613" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="54" y="630" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Hold date, time &amp; status</text>
+<text x="54" y="647" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Link a patient with a doctor</text>
+<text x="54" y="664" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Support booking / reschedule / cancel</text>
+<text x="302.0" y="630" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<text x="302.0" y="647" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Doctor</text>
+<text x="302.0" y="664" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Receptionist</text>
+<rect x="490" y="553" width="420" height="157" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="490" y1="597" x2="910" y2="597" stroke="#A8201A" stroke-width="1.3"/>
+<text x="700.0" y="581.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">MedicalRecord</text>
+<line x1="742.0" y1="597" x2="742.0" y2="710" stroke="#A8201A" stroke-width="1.3"/>
+<text x="504" y="613" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="752.0" y="613" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="504" y="630" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Store diagnosis history</text>
+<text x="504" y="647" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Store examination results</text>
+<text x="504" y="664" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Provide record data to authorized staff</text>
+<text x="752.0" y="630" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<text x="752.0" y="647" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Doctor</text>
+<text x="752.0" y="664" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Nurse</text>
+<text x="752.0" y="681" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Prescription</text>
+<text x="752.0" y="698" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">ExaminationResult</text>
+<rect x="940" y="553" width="420" height="123" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="940" y1="597" x2="1360" y2="597" stroke="#A8201A" stroke-width="1.3"/>
+<text x="1150.0" y="581.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Prescription</text>
+<line x1="1192.0" y1="597" x2="1192.0" y2="676" stroke="#A8201A" stroke-width="1.3"/>
+<text x="954" y="613" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="1202.0" y="613" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="954" y="630" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Store prescribed medication details</text>
+<text x="954" y="647" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Link prescription to a medical record</text>
+<text x="1202.0" y="630" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Doctor</text>
+<text x="1202.0" y="647" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">MedicalRecord</text>
+<text x="1202.0" y="664" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<rect x="40" y="740" width="420" height="123" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="40" y1="784" x2="460" y2="784" stroke="#A8201A" stroke-width="1.3"/>
+<text x="250.0" y="768.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">ExaminationResult</text>
+<line x1="292.0" y1="784" x2="292.0" y2="863" stroke="#A8201A" stroke-width="1.3"/>
+<text x="54" y="800" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="302.0" y="800" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="54" y="817" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Store vital signs</text>
+<text x="54" y="834" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Store exam results</text>
+<text x="54" y="851" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Attach results to a medical record</text>
+<text x="302.0" y="817" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Nurse</text>
+<text x="302.0" y="834" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">MedicalRecord</text>
+<text x="302.0" y="851" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Doctor</text>
+<rect x="490" y="740" width="420" height="123" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="490" y1="784" x2="910" y2="784" stroke="#A8201A" stroke-width="1.3"/>
+<text x="700.0" y="768.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">Payment</text>
+<line x1="742.0" y1="784" x2="742.0" y2="863" stroke="#A8201A" stroke-width="1.3"/>
+<text x="504" y="800" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="752.0" y="800" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="504" y="817" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Record amount, date &amp; method</text>
+<text x="504" y="834" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Link a payment to a patient</text>
+<text x="752.0" y="817" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Patient</text>
+<text x="752.0" y="834" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Accountant</text>
+<text x="752.0" y="851" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">FinancialReport</text>
+<rect x="940" y="740" width="420" height="123" fill="#FAE5C7" stroke="#0F8B8D" stroke-width="1.3"/>
+<line x1="940" y1="784" x2="1360" y2="784" stroke="#A8201A" stroke-width="1.3"/>
+<text x="1150.0" y="768.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#143642">FinancialReport</text>
+<line x1="1192.0" y1="784" x2="1192.0" y2="863" stroke="#A8201A" stroke-width="1.3"/>
+<text x="954" y="800" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">RESPONSIBILITIES</text>
+<text x="1202.0" y="800" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#143642" opacity="0.7">COLLABORATORS</text>
+<text x="954" y="817" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Aggregate financial operations</text>
+<text x="954" y="834" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Calculate monthly income</text>
+<text x="954" y="851" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">-Calculate employee salaries</text>
+<text x="1202.0" y="817" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Payment</text>
+<text x="1202.0" y="834" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Accountant</text>
+<text x="1202.0" y="851" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#143642">Manager</text>
+</svg>
