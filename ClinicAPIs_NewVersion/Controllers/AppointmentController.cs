@@ -15,7 +15,7 @@ public class AppointmentController : ControllerBase
         _appointmentService = appointmentService;
     }
 
-    [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
     [HttpPost]
     public async Task<IActionResult> CreateAppointment(
         [FromBody] CreateAppointmentDto appointment)
@@ -29,7 +29,7 @@ public class AppointmentController : ControllerBase
             createdAppointment);
     }
 
-    [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
     [HttpGet]
     public async Task<IActionResult> GetAllAppointments()
     {
@@ -39,7 +39,7 @@ public class AppointmentController : ControllerBase
         return Ok(appointments);
     }
 
-    [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAppointmentById(int id)
     {
@@ -49,7 +49,7 @@ public class AppointmentController : ControllerBase
         return Ok(appointment);
     }
 
-    [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
     [HttpGet("status/{status}")]
     public async Task<IActionResult> GetAppointmentsByStatus(AppointmentStatus status)
     {
@@ -58,7 +58,7 @@ public class AppointmentController : ControllerBase
 
         return Ok(appointments);
     }
-    [Authorize($"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
+    [Authorize(Roles =$"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
     [HttpGet("doctor/{doctorId}")]
     public async Task<IActionResult> GetAppointmentsByDoctorId(int doctorId)
     {
@@ -66,7 +66,7 @@ public class AppointmentController : ControllerBase
             await _appointmentService.GetAppointmentsByDoctorIdAsync(doctorId);
         return Ok(appointments);
     }
-    [Authorize($"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
+    [Authorize(Roles =$"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
     [HttpGet("patient/{patientId}")]
     public async Task<IActionResult> GetAppointmentsByPatientId(int patientId)
     {
@@ -74,7 +74,7 @@ public class AppointmentController : ControllerBase
             await _appointmentService.GetAppointmentsByPatientIdAsync(patientId);
         return Ok(appointments);
     }
-    [Authorize($"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
+    [Authorize(Roles =$"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
     [HttpGet("nurse/{nurseId}")]
     public async Task<IActionResult> GetAppointmentsByNurseId(int nurseId)
     {
@@ -92,7 +92,7 @@ public class AppointmentController : ControllerBase
         return Ok(appointments);
     }
 
-
+    [Authorize()]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAppointment(
         int id,
@@ -103,7 +103,7 @@ public class AppointmentController : ControllerBase
 
         return Ok(updatedAppointment);
     }
-
+    [Authorize(Roles = $"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAppointment(int id)
     {
