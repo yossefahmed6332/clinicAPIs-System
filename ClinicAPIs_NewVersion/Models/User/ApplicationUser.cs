@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 namespace clinicAPIsSystem.Models.User
 {
-    public abstract class ApplicationUser:IdentityUser<int>
+    public class ApplicationUser:IdentityUser<int>
     {
         public string FirstName { get; protected set; } = null!;
         public string LastName { get; protected set; } = null!;

@@ -32,7 +32,7 @@ namespace clinicAPIsSystem.Controllers
         public async Task<IActionResult> GetMedicalRecord(int id)
         {
             var medicalRecord =
-                await _medicalRecordService.GetMedicalRecord(id);
+                await _medicalRecordService.GetMedicalRecordAsync(id);
 
             return Ok(medicalRecord);
         }

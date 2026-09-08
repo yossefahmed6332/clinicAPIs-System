@@ -5,15 +5,15 @@ namespace clinicAPIsSystem.DTOs.UserDTOs.ApplicationUserDTO.Employees.GraduatedD
     public abstract class CreateGraduatedDto:CreateEmployeeDto
     {
         [Required, MaxLength(100)]
-        public string Degree { get; protected set; } = null!; 
+        public string Degree { get;  set; } = null!; 
             [Required, MaxLength(100)]
-        public string University { get; protected set; } = null!; 
+        public string University { get;  set; } = null!; 
         [Required]
-        public int YearsOfExperience { get; protected set; }
+        public int YearsOfExperience { get;  set; }
         [Required,Range(1900,2600)]
-        public int GraduationYear { get; protected set; }
+        public int GraduationYear { get;  set; }
         [Required, MaxLength(100)]
-        public string License { get; protected set; }=null!;
+        public string License { get;  set; }=null!;
 
 
 

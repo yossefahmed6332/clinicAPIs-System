@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="ClinicAPIs_NewVersion/ClinicAPIs_NewVersion.csproj" />
+  <Project Path="Testing/Testing.csproj" Id="67c3f7aa-1dac-46a8-b8a3-a812f86e1d52" />
 </Solution>

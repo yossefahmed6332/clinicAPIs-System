@@ -6,8 +6,8 @@ namespace clinicAPIsSystem.DTOs.MedicalRecordDTOs
     public class MedicalRecordDto
     {
         public int Id { get;  set; }
-        public double Height { get;  set; }
-        public double Weight { get;  set; }
+        public decimal Height { get;  set; }
+        public decimal Weight { get;  set; }
         public string? BloodType { get;  set; }
         public int PatientId { get;  set; }
         public ICollection<PrescriptionDto>? Prescriptions { get;  set; }

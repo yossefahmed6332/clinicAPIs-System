@@ -11,7 +11,7 @@
         public DateTime RecordedAt { get;  set; }
         public int NurseId { get;  set; }
         public int PatientId { get;  set; }
-
+        public int MedicalRecordId { get; set; }
 
     }
 }

@@ -42,7 +42,7 @@ namespace clinicAPIsSystem.Service
             return _mapper.Map<List<MedicalRecordDto>>(medicalRecords);
         }
 
-        public async Task<MedicalRecordDto> GetMedicalRecord(int id)
+        public async Task<MedicalRecordDto> GetMedicalRecordAsync(int id)
         {
             _logger
                 .LogDebug("Retrieving medical record with ID {MedicalRecordId}", id);

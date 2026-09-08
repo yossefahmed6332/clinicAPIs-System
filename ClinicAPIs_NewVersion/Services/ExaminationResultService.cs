@@ -3,6 +3,7 @@ using clinicAPIsSystem.DTOs.ExaminationResultDTOs;
 using clinicAPIsSystem.IService;
 using clinicAPIsSystem.IRepositoryService;
 using clinicAPIsSystem.Models;
+using clinicAPIsSystem.IServices.IUserServices.IEmployeeServices.IMedicalStaffServices;
 
 namespace clinicAPIsSystem.Service
 {
@@ -11,13 +12,17 @@ namespace clinicAPIsSystem.Service
         private readonly IMapper _mapper;
         private readonly IExaminationResultRepository _examinationResultRepository;
         private readonly ILogger<ExaminationResultService>  _logger;
-        public ExaminationResultService(IMapper mapper, IExaminationResultRepository examinationResultRepository, ILogger<ExaminationResultService> logger)
+        private readonly IMedicalRecordService _medicalRecordService;
+        private readonly INurseService _nurseService;
+        public ExaminationResultService(IMapper mapper, IExaminationResultRepository examinationResultRepository, ILogger<ExaminationResultService> logger
+            , IMedicalRecordService medicalRecordService, INurseService nurseService)
         {
             _mapper = mapper;
 
             _examinationResultRepository = examinationResultRepository;
             _logger = logger;
-        
+            _medicalRecordService = medicalRecordService;
+            _nurseService = nurseService;
         }
         public async Task<ExaminationResultDto> CreateExaminationResultAsync(CreateExaminationResultDto createExaminationResultDto)
         {
@@ -25,7 +30,23 @@ namespace clinicAPIsSystem.Service
                 "Creating examination result for Medical Record {MedicalRecordId}",
                 createExaminationResultDto.MedicalRecordId);
 
+            var medicalRecord = await _medicalRecordService.GetMedicalRecordAsync(createExaminationResultDto.MedicalRecordId);
+            if (medicalRecord == null)
+            {
+                _logger.LogWarning(
+                    "Medical Record with ID {MedicalRecordId} not found.",
+                    createExaminationResultDto.MedicalRecordId);
+                throw new KeyNotFoundException($"Medical Record with ID {createExaminationResultDto.MedicalRecordId} not found.");
+            }
 
+            var nurse = await _nurseService.GetNurseAsync(createExaminationResultDto.NurseId);
+            if (nurse == null)
+            {
+                _logger.LogWarning(
+                    "Nurse with ID {NurseId} not found.",
+                    createExaminationResultDto.NurseId);
+                throw new KeyNotFoundException($"Nurse with ID {createExaminationResultDto.NurseId} not found.");
+            }
             var examinationResult = new ExaminationResult(
                 createExaminationResultDto.TestType!
                 , createExaminationResultDto.ResultValue!
