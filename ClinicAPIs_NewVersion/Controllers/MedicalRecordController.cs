@@ -22,7 +22,7 @@ namespace clinicAPIsSystem.Controllers
             _cache = cache;
         }
 
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpGet]
         public async Task<IActionResult> GetAllMedicalRecords()
         {
@@ -45,7 +45,7 @@ namespace clinicAPIsSystem.Controllers
             return Ok(medicalRecords);
         }
 
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMedicalRecord(int id)
         {
@@ -68,7 +68,7 @@ namespace clinicAPIsSystem.Controllers
             return Ok(medicalRecord);
         }
 
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpGet("patient/{patientId}")]
         public async Task<IActionResult> GetMedicalRecordByPatientId(
             int patientId)
@@ -92,7 +92,7 @@ namespace clinicAPIsSystem.Controllers
             return Ok(medicalRecord);
         }
 
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMedicalRecord(
             int id,

@@ -25,7 +25,7 @@ namespace clinicAPIsSystem.Controllers
         }
 
         // POST: api/ExaminationResult
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}")]
         [HttpPost]
         public async Task<IActionResult> CreateExaminationResult(
             [FromBody] CreateExaminationResultDto createExaminationResultDto)
@@ -43,7 +43,7 @@ namespace clinicAPIsSystem.Controllers
         }
 
         // GET: api/ExaminationResult
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpGet]
         public async Task<IActionResult> GetAllExaminationResults()
         {
@@ -70,7 +70,7 @@ namespace clinicAPIsSystem.Controllers
         }
 
         // GET: api/ExaminationResult/{id}
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetExaminationResult(int id)
         {
@@ -97,7 +97,7 @@ namespace clinicAPIsSystem.Controllers
         }
 
         // GET: api/ExaminationResult/nurse/{nurseId}
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpGet("nurse/{nurseId}")]
         public async Task<IActionResult> GetExaminationResultsByNurseId(
             int nurseId)
@@ -125,7 +125,7 @@ namespace clinicAPIsSystem.Controllers
         }
 
         // GET: api/ExaminationResult/medical-record/{medicalRecordId}
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
         [HttpGet("medical-record/{medicalRecordId}")]
         public async Task<IActionResult> GetExaminationResultsByMedicalRecordId(
             int medicalRecordId)
@@ -155,7 +155,7 @@ namespace clinicAPIsSystem.Controllers
         }
 
         // PUT: api/ExaminationResult/{id}
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Manager)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Manager)}")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateExaminationResult(
             int id,
@@ -174,7 +174,7 @@ namespace clinicAPIsSystem.Controllers
         }
 
         // DELETE: api/ExaminationResult/{id}
-        [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}")]
+        [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExaminationResult(int id)
         {
