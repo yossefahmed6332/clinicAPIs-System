@@ -18,6 +18,10 @@ public class GlobalExceptionHandler : IExceptionHandler
         {
             statusCode = StatusCodes.Status400BadRequest;
         }
+        else if (exception is UnauthorizedAccessException)
+        {
+            statusCode = StatusCodes.Status401Unauthorized;
+        }
         else
         {
             statusCode = StatusCodes.Status500InternalServerError;
