@@ -1,8 +1,10 @@
-﻿using clinicAPIsSystem.DTOs.UserDTOs.ApplicationUserDTO.Employees.GraduatedDTO.NonMedicalStaffDTO.ReceptionistDTO;
+﻿
+using clinicAPIsSystem.DTOs.UserDTOs.ApplicationUserDTO.Employees.GraduatedDTO.NonMedicalStaffDTO.ReceptionistDTO;
 using clinicAPIsSystem.IServices.IUserServices.IEmployeeServices.NonMedicalStaffServices;
 using clinicAPIsSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Security.Claims;
 
 namespace clinicAPIsSystem.Controllers
@@ -12,49 +14,89 @@ namespace clinicAPIsSystem.Controllers
     public class ReceptionistController : ControllerBase
     {
         private readonly IReceptionistService _receptionistService;
+        private readonly IMemoryCache _cache;
 
-        public ReceptionistController(IReceptionistService receptionistService)
+        public ReceptionistController(
+            IReceptionistService receptionistService,
+            IMemoryCache cache)
         {
             _receptionistService = receptionistService;
+            _cache = cache;
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)}")]
         [HttpPost("add")]
         public async Task<IActionResult> CreateReceptionist(
-            [FromBody] CreateReceptionistDto createReceptionistDto
-            )
+            [FromBody] CreateReceptionistDto createReceptionistDto)
         {
             var receptionist =
                 await _receptionistService.CreateReceptionistAsync(
-                    createReceptionistDto
-                    );
+                    createReceptionistDto);
+
+            _cache.Remove("allReceptionists");
 
             return Ok(receptionist);
         }
-        [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)},{nameof(UserRole.Accountant)}")]
 
+        [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)},{nameof(UserRole.Accountant)}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetReceptionist(int id)
         {
-            var receptionist =
-                await _receptionistService.GetReceptionistAsync(id);
+            string cacheKey = $"receptionist:{id}";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out ReceptionistDto? receptionist))
+            {
+                receptionist =
+                    await _receptionistService
+                        .GetReceptionistAsync(id);
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(6));
+
+                _cache.Set(
+                    cacheKey,
+                    receptionist,
+                    cacheOptions);
+            }
 
             return Ok(receptionist);
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)},{nameof(UserRole.Accountant)}")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllReceptionists()
         {
-            var receptionists =
-                await _receptionistService.GetAllReceptionistsAsync();
+            const string cacheKey = "allReceptionists";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out List<ReceptionistDto>? receptionists))
+            {
+                receptionists =
+                    await _receptionistService
+                        .GetAllReceptionistsAsync();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                _cache.Set(
+                    cacheKey,
+                    receptionists,
+                    cacheOptions);
+            }
 
             return Ok(receptionists);
         }
-        [Authorize(Roles = $"{nameof(UserRole.Receptionist)}")]
+
+        [Authorize(Roles = nameof(UserRole.Receptionist))]
         [HttpPut("me")]
         public async Task<IActionResult> UpdateMyAccount(
             [FromBody] UpdateReceptionistDto updateReceptionistDto)
         {
-            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            var idClaim =
+                User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (idClaim == null)
                 return Unauthorized();
@@ -67,8 +109,12 @@ namespace clinicAPIsSystem.Controllers
                     updateReceptionistDto,
                     id);
 
+            _cache.Remove($"receptionist:{id}");
+            _cache.Remove("allReceptionists");
+
             return Ok(updatedReceptionist);
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)}")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateReceptionist(
@@ -80,7 +126,11 @@ namespace clinicAPIsSystem.Controllers
                     updateReceptionistDto,
                     id);
 
+            _cache.Remove($"receptionist:{id}");
+            _cache.Remove("allReceptionists");
+
             return Ok(updatedReceptionist);
         }
     }
 }
+

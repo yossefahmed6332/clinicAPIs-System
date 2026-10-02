@@ -1,10 +1,12 @@
-﻿using clinicAPIsSystem.DTOs.MedicalRecordDTOs;
+﻿#region Used name spaces    
 using clinicAPIsSystem.DTOs.UserDTOs.PatientDTO;
 using clinicAPIsSystem.IServices.IUserServices;
 using clinicAPIsSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Security.Claims;
+#endregion
 
 namespace clinicAPIsSystem.Controllers
 {
@@ -13,46 +15,88 @@ namespace clinicAPIsSystem.Controllers
     public class PatientController : ControllerBase
     {
         private readonly IPatientService _patientService;
+        private readonly IMemoryCache _cache;
 
-        public PatientController(IPatientService patientService)
+        public PatientController(
+            IPatientService patientService,
+            IMemoryCache cache)
         {
             _patientService = patientService;
+            _cache = cache;
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)}")]
         [HttpPost("add")]
         public async Task<IActionResult> CreatePatient(
-            [FromBody] CreatePatientDto createPatientDto
-            )
+            [FromBody] CreatePatientDto createPatientDto)
         {
-            var patient = await _patientService.CreatePatientAsync(
-                createPatientDto
-                );
+            var patient =
+                await _patientService.CreatePatientAsync(
+                    createPatientDto);
+
+            _cache.Remove("allPatients");
 
             return Ok(patient);
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)}")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllPatients()
         {
-            var patients = await _patientService.GetAllPatientsAsync();
+            const string cacheKey = "allPatients";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out List<PatientDto>? patients))
+            {
+                patients =
+                    await _patientService.GetAllPatientsAsync();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                _cache.Set(
+                    cacheKey,
+                    patients,
+                    cacheOptions);
+            }
 
             return Ok(patients);
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPatient(int id)
         {
-            var patient = await _patientService.GetPatientAsync(id);
+            string cacheKey = $"patient:{id}";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out PatientDto? patient))
+            {
+                patient =
+                    await _patientService.GetPatientAsync(id);
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(6));
+
+                _cache.Set(
+                    cacheKey,
+                    patient,
+                    cacheOptions);
+            }
 
             return Ok(patient);
         }
-        [Authorize(Roles = (nameof(UserRole.Patient)))]
+
+        [Authorize(Roles = nameof(UserRole.Patient))]
         // Update current logged-in patient
         [HttpPut("me")]
         public async Task<IActionResult> UpdateMyAccount(
             [FromBody] UpdatePatientDto updatePatientDto)
         {
-            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            var idClaim =
+                User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (idClaim == null)
                 return Unauthorized();
@@ -64,6 +108,9 @@ namespace clinicAPIsSystem.Controllers
                 await _patientService.UpdatePatientAsync(
                     updatePatientDto,
                     id);
+
+            _cache.Remove($"patient:{id}");
+            _cache.Remove("allPatients");
 
             return Ok(updatedPatient);
         }
@@ -79,6 +126,9 @@ namespace clinicAPIsSystem.Controllers
                 await _patientService.UpdatePatientAsync(
                     updatePatientDto,
                     id);
+
+            _cache.Remove($"patient:{id}");
+            _cache.Remove("allPatients");
 
             return Ok(updatedPatient);
         }

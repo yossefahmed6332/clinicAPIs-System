@@ -3,6 +3,7 @@ using clinicAPIsSystem.IServices.IUserServices.IEmployeeServices.NonMedicalStaff
 using clinicAPIsSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Security.Claims;
 
 namespace clinicAPIsSystem.Controllers
@@ -12,48 +13,87 @@ namespace clinicAPIsSystem.Controllers
     public class AccountantController : ControllerBase
     {
         private readonly IAccountantService _accountantService;
+        private readonly IMemoryCache _cache;
 
-        public AccountantController(IAccountantService accountantService)
+        public AccountantController(
+            IAccountantService accountantService,
+            IMemoryCache cache)
         {
             _accountantService = accountantService;
+            _cache = cache;
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)}")]
         [HttpPost("add")]
         public async Task<IActionResult> CreateAccountant(
-            [FromBody] CreateAccountantDto createAccountantDto
-            )
+            [FromBody] CreateAccountantDto createAccountantDto)
         {
             var accountant =
                 await _accountantService.CreateAccountantAsync(
-                    createAccountantDto
-                    );
+                    createAccountantDto);
+
+            _cache.Remove("allAccountants");
 
             return Ok(accountant);
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)},{nameof(UserRole.Accountant)}")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllAccountants()
         {
-            var accountants =
-                await _accountantService.GetAllAccountsAsync();
+            const string cacheKey = "allAccountants";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out List<AccountantDto>? accountants))
+            {
+                accountants =
+                    await _accountantService.GetAllAccountsAsync();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                _cache.Set(
+                    cacheKey,
+                    accountants,
+                    cacheOptions);
+            }
 
             return Ok(accountants);
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)},{nameof(UserRole.Receptionist)},{nameof(UserRole.Accountant)}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAccountant(int id)
         {
-            var accountant =
-                await _accountantService.GetAccountantAsync(id);
+            string cacheKey = $"accountant:{id}";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out AccountantDto? accountant))
+            {
+                accountant =
+                    await _accountantService.GetAccountantAsync(id);
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(6));
+
+                _cache.Set(
+                    cacheKey,
+                    accountant,
+                    cacheOptions);
+            }
 
             return Ok(accountant);
         }
+
         [Authorize(Roles = nameof(UserRole.Accountant))]
         [HttpPut("me")]
         public async Task<IActionResult> UpdateMyAccount(
             [FromBody] UpdateAccountantDto updateAccountantDto)
         {
-            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            var idClaim =
+                User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (idClaim == null)
                 return Unauthorized();
@@ -66,8 +106,12 @@ namespace clinicAPIsSystem.Controllers
                     updateAccountantDto,
                     id);
 
+            _cache.Remove($"accountant:{id}");
+            _cache.Remove("allAccountants");
+
             return Ok(updatedAccountant);
         }
+
         [Authorize(Roles = $"{nameof(UserRole.Admin)},{nameof(UserRole.Manager)}")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAccountant(
@@ -78,6 +122,9 @@ namespace clinicAPIsSystem.Controllers
                 await _accountantService.UpdateAccountantAsync(
                     updateAccountantDto,
                     id);
+
+            _cache.Remove($"accountant:{id}");
+            _cache.Remove("allAccountants");
 
             return Ok(updatedAccountant);
         }
