@@ -200,7 +200,7 @@ public class AppointmentController : ControllerBase
         return Ok(appointments);
     }
     //PUT: api/Appointments/{id}
-    [Authorize]
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}")]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAppointment(
         int id,

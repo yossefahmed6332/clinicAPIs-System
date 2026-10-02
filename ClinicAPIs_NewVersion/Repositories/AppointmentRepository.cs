@@ -52,7 +52,7 @@ namespace clinicAPIsSystem.RepositoryService
         public async Task<Appointment?> GetAppointmentInTimeRange(DateTime startDate, DateTime endDate, int doctorId,int nurseId)
         {
             return await _context.TAppointments
-                .Where(a => a.StartDate < endDate && a.EndDate > startDate && a.DoctorId == doctorId && a.NurseId == nurseId)
+                .Where(a => a.StartDate < endDate && a.EndDate > startDate && (a.DoctorId == doctorId || a.NurseId == nurseId))
                 .FirstOrDefaultAsync();
         }
         public async Task<Appointment?> UpdateAppointmentAsync(Appointment appointment)
