@@ -1,3 +1,4 @@
+#region used name space
 using clinicAPIsSystem.Data;
 using clinicAPIsSystem.Data.Seeder;
 using clinicAPIsSystem.IRepositoryService;
@@ -29,7 +30,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+#endregion
 var builder = WebApplication.CreateBuilder(args);
 
 #region Controllers
@@ -193,6 +194,9 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 #endregion
 
+#region Memory Cache
+builder.Services.AddMemoryCache();
+#endregion
 
 #region OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -207,7 +211,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwagger();
     app.UseSwaggerUI();
 }
 
@@ -231,6 +234,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 #endregion
+
 
 #region Middleware
 

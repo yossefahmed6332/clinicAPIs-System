@@ -3,6 +3,7 @@ using clinicAPIsSystem.IService;
 using clinicAPIsSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace clinicAPIsSystem.Controllers
 {
@@ -11,11 +12,14 @@ namespace clinicAPIsSystem.Controllers
     public class FinancialReportController : ControllerBase
     {
         private readonly IFinancialReportService _financialReportService;
+        private readonly IMemoryCache _cache;
 
         public FinancialReportController(
-            IFinancialReportService financialReportService)
+            IFinancialReportService financialReportService,
+            IMemoryCache cache)
         {
             _financialReportService = financialReportService;
+            _cache = cache;
         }
 
         [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Manager)}, {nameof(UserRole.Accountant)}")]
@@ -27,29 +31,60 @@ namespace clinicAPIsSystem.Controllers
                 await _financialReportService.CreateFinancialReportAsync(
                     createFinancialReportDto);
 
+            _cache.Remove("allFinancialReports");
+
             return CreatedAtAction(
                 nameof(GetFinancialReport),
                 new { id = createdFinancialReport.Id },
                 createdFinancialReport);
         }
+
         [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Manager)}, {nameof(UserRole.Accountant)}")]
         [HttpGet]
         public async Task<IActionResult> GetAllFinancialReports()
         {
-            var financialReports =
-                await _financialReportService.GetAllFinancialReportsAsync();
+            const string cacheKey = "allFinancialReports";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out List<FinancialReportDto>? financialReports))
+            {
+                financialReports =
+                    await _financialReportService
+                        .GetAllFinancialReportsAsync();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                _cache.Set(cacheKey, financialReports, cacheOptions);
+            }
 
             return Ok(financialReports);
         }
+
         [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Manager)}, {nameof(UserRole.Accountant)}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFinancialReport(int id)
         {
-            var financialReport =
-                await _financialReportService.GetFinancialReportAsync(id);
+            string cacheKey = $"financialReport:{id}";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out FinancialReportDto? financialReport))
+            {
+                financialReport =
+                    await _financialReportService
+                        .GetFinancialReportAsync(id);
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(6));
+
+                _cache.Set(cacheKey, financialReport, cacheOptions);
+            }
 
             return Ok(financialReport);
         }
+
         [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Manager)}, {nameof(UserRole.Accountant)}")]
         [HttpGet("range")]
         public async Task<IActionResult> GetFinancialReportsByRange(
@@ -58,25 +93,54 @@ namespace clinicAPIsSystem.Controllers
             [FromQuery] DateTime startDate,
             [FromQuery] DateTime endDate)
         {
-            var financialReports =
-                await _financialReportService.GetFinancialReportsByRangeAsync(
-                    min,
-                    max,
-                    startDate,
-                    endDate);
+            string cacheKey =
+                $"financialReports:range:{min}:{max}:{startDate:O}:{endDate:O}";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out List<FinancialReportDto>? financialReports))
+            {
+                financialReports =
+                    await _financialReportService
+                        .GetFinancialReportsByRangeAsync(
+                            min,
+                            max,
+                            startDate,
+                            endDate);
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                _cache.Set(cacheKey, financialReports, cacheOptions);
+            }
 
             return Ok(financialReports);
         }
+
         [Authorize($"{nameof(UserRole.Admin)}, {nameof(UserRole.Manager)}, {nameof(UserRole.Accountant)}")]
         [HttpGet("date-range")]
         public async Task<IActionResult> GetFinancialReportsByDateRange(
             [FromQuery] DateTime startDate,
             [FromQuery] DateTime endDate)
         {
-            var financialReports =
-                await _financialReportService.GetFinancialReportsByDateRangeAsync(
-                    startDate,
-                    endDate);
+            string cacheKey =
+                $"financialReports:date-range:{startDate:O}:{endDate:O}";
+
+            if (!_cache.TryGetValue(
+                    cacheKey,
+                    out List<FinancialReportDto>? financialReports))
+            {
+                financialReports =
+                    await _financialReportService
+                        .GetFinancialReportsByDateRangeAsync(
+                            startDate,
+                            endDate);
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+                _cache.Set(cacheKey, financialReports, cacheOptions);
+            }
 
             return Ok(financialReports);
         }

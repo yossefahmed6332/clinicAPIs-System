@@ -1,21 +1,30 @@
-﻿using clinicAPIsSystem.DTOs.AppointmentDTOs;
+﻿
+#region used namespaces
+using clinicAPIsSystem.DTOs.AppointmentDTOs;
 using clinicAPIsSystem.IService;
 using clinicAPIsSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+#endregion
 
 [Route("api/[controller]")]
 [ApiController]
 public class AppointmentController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;
+    private readonly IMemoryCache _cache;
 
-    public AppointmentController(IAppointmentService appointmentService)
+    public AppointmentController(
+        IAppointmentService appointmentService,
+        IMemoryCache cache)
     {
         _appointmentService = appointmentService;
+        _cache = cache;
     }
 
-    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    // POST: api/Appointment
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}")]
     [HttpPost]
     public async Task<IActionResult> CreateAppointment(
         [FromBody] CreateAppointmentDto appointment)
@@ -23,92 +32,200 @@ public class AppointmentController : ControllerBase
         var createdAppointment =
             await _appointmentService.CreateAppointmentAsync(appointment);
 
+        _cache.Remove("allAppointments");
+
         return CreatedAtAction(
             nameof(GetAppointmentById),
             new { id = createdAppointment.Id },
             createdAppointment);
     }
 
-    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    // GET: api/Appointments
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Nurse)}, {nameof(UserRole.Receptionist)}")]
     [HttpGet]
     public async Task<IActionResult> GetAllAppointments()
     {
-        var appointments =
-            await _appointmentService.GetAllAppointmentsAsync();
+        const string cacheKey = "allAppointments";
+
+        if (!_cache.TryGetValue(
+                cacheKey,
+                out List<AppointmentDto>? appointments))
+        {
+            appointments =
+                await _appointmentService.GetAllAppointmentsAsync();
+
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+            _cache.Set(cacheKey, appointments, cacheOptions);
+        }
 
         return Ok(appointments);
     }
 
-    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    //GET: api/Appointments/{id}
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAppointmentById(int id)
     {
-        var appointment =
-            await _appointmentService.GetAppointmentAsync(id);
+        string cacheKey = $"appointment:{id}";
+
+        if (!_cache.TryGetValue(
+                cacheKey,
+                out AppointmentDto? appointment))
+        {
+            appointment =
+                await _appointmentService.GetAppointmentAsync(id);
+
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromMinutes(6));
+
+            _cache.Set(cacheKey, appointment, cacheOptions);
+        }
 
         return Ok(appointment);
     }
 
-    [Authorize(Roles =$"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
+    // GET: api/Appointments/status/{status}
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Doctor)}, {nameof(UserRole.Receptionist)}")]
     [HttpGet("status/{status}")]
-    public async Task<IActionResult> GetAppointmentsByStatus(AppointmentStatus status)
+    public async Task<IActionResult> GetAppointmentsByStatus(
+        AppointmentStatus status)
     {
-        var appointments =
-            await _appointmentService.GetAppointmentsByStatusAsync(status);
+        string cacheKey = $"appointments:status:{status}";
+
+        if (!_cache.TryGetValue(
+                cacheKey,
+                out List<AppointmentDto>? appointments))
+        {
+            appointments =
+                await _appointmentService
+                    .GetAppointmentsByStatusAsync(status);
+
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+            _cache.Set(cacheKey, appointments, cacheOptions);
+        }
 
         return Ok(appointments);
     }
-    [Authorize(Roles =$"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
+
+
+    // GET: api/Appointments/doctor/{doctorId}
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
     [HttpGet("doctor/{doctorId}")]
     public async Task<IActionResult> GetAppointmentsByDoctorId(int doctorId)
     {
-        var appointments =
-            await _appointmentService.GetAppointmentsByDoctorIdAsync(doctorId);
+        string cacheKey = $"appointments:doctor:{doctorId}";
+
+        if (!_cache.TryGetValue(
+                cacheKey,
+                out List<AppointmentDto>? appointments))
+        {
+            appointments =
+                await _appointmentService
+                    .GetAppointmentsByDoctorIdAsync(doctorId);
+
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+            _cache.Set(cacheKey, appointments, cacheOptions);
+        }
+
         return Ok(appointments);
     }
-    [Authorize(Roles =$"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
+
+    // GET: api/Appointments/patient/{patientId}
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
     [HttpGet("patient/{patientId}")]
     public async Task<IActionResult> GetAppointmentsByPatientId(int patientId)
     {
-        var appointments =
-            await _appointmentService.GetAppointmentsByPatientIdAsync(patientId);
+        string cacheKey = $"appointments:patient:{patientId}";
+
+        if (!_cache.TryGetValue(
+                cacheKey,
+                out List<AppointmentDto>? appointments))
+        {
+            appointments =
+                await _appointmentService
+                    .GetAppointmentsByPatientIdAsync(patientId);
+
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+            _cache.Set(cacheKey, appointments, cacheOptions);
+        }
+
         return Ok(appointments);
     }
-    [Authorize(Roles =$"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
+    // GET: api/Appointments/nurse/{nurseId}
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
     [HttpGet("nurse/{nurseId}")]
     public async Task<IActionResult> GetAppointmentsByNurseId(int nurseId)
     {
-        var appointments =
-            await _appointmentService.GetAppointmentsByNurseIdAsync(nurseId);
+        string cacheKey = $"appointments:nurse:{nurseId}";
+
+        if (!_cache.TryGetValue(
+                cacheKey,
+                out List<AppointmentDto>? appointments))
+        {
+            appointments =
+                await _appointmentService
+                    .GetAppointmentsByNurseIdAsync(nurseId);
+
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+
+            _cache.Set(cacheKey, appointments, cacheOptions);
+        }
+
         return Ok(appointments);
     }
 
-    [Authorize()]
+
+    // GET: api/Appointments/user
+    [Authorize]
     [HttpGet("user")]
     public async Task<IActionResult> GetAppointmentsForUser()
     {
-        var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-        var appointments = await _appointmentService.GetAppointmentsForUserByTokens(token);
+        var token = Request.Headers["Authorization"]
+            .ToString()
+            .Replace("Bearer ", "");
+
+        var appointments =
+            await _appointmentService
+                .GetAppointmentsForUserByTokens(token);
+
         return Ok(appointments);
     }
-
-    [Authorize()]
+    //PUT: api/Appointments/{id}
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAppointment(
         int id,
         [FromBody] UpdateAppointmentDto appointment)
     {
         var updatedAppointment =
-            await _appointmentService.UpdateAppointmentAsync(appointment, id);
+            await _appointmentService
+                .UpdateAppointmentAsync(appointment, id);
+
+        _cache.Remove($"appointment:{id}");
+        _cache.Remove("allAppointments");
 
         return Ok(updatedAppointment);
     }
-    [Authorize(Roles = $"{nameof(UserRole.Admin)},  {nameof(UserRole.Receptionist)},{nameof(UserRole.Manager)}")]
+    //Delete Appointment
+    [Authorize(Roles = $"{nameof(UserRole.Admin)}, {nameof(UserRole.Receptionist)}, {nameof(UserRole.Manager)}")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAppointment(int id)
     {
         await _appointmentService.DeleteAppointmentAsync(id);
 
+        _cache.Remove($"appointment:{id}");
+        _cache.Remove("allAppointments");
+
         return NoContent();
     }
 }
+

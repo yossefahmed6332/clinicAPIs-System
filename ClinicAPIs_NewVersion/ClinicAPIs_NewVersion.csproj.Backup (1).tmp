@@ -17,9 +17,15 @@
 
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.12" />
 
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.13" />
+
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.12" />
 
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.13" />
+
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.13" />
+
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.3.13" />
 
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
 
@@ -32,7 +38,7 @@
 
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
 		<PackageReference Include="Moq" Version="4.21.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+		<PackageReference Include="Swagger" Version="1.0.0" />
 		<PackageReference Include="xunit" Version="2.9.3" />
 
 		<PackageReference Include="xunit.runner.visualstudio" Version="4.0.0">
