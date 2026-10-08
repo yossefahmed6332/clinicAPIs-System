@@ -4,7 +4,6 @@ using clinicAPIsSystem.Models;
 using clinicAPIsSystem.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace clinicAPIsSystem.RepositoryService.UserRepository
 {
@@ -54,12 +53,12 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository
 
         public async Task<List<Admin>> GetAllAdminsAsync()
         {
-            return await _context.TAdmins.ToListAsync(); 
+            return await _context.TAdmins.AsNoTracking().ToListAsync(); 
         }
 
         public async Task<Admin?> GetAdminAsync(int id)
         {
-            return await  _context.TAdmins.FirstOrDefaultAsync(a=>a.Id==id);
+            return await  _context.TAdmins.AsNoTracking().FirstOrDefaultAsync(a=>a.Id==id);
         }
 
         public async Task<Admin> UpdateAdminAsync(Admin admin)
