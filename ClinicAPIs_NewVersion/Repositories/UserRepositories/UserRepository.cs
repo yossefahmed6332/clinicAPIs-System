@@ -13,20 +13,21 @@ namespace clinicAPIsSystem.Repositories.UserRepository
         }
         public async Task<ApplicationUser?> GetUserAsync(int id)
         {
-            return await _userManager.FindByIdAsync(id.ToString());
+            return await _userManager.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
         {
-            return await _userManager.FindByEmailAsync(email);
+            return await _userManager.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email ==email);
         }
         public async Task<ApplicationUser?> GetUserByUsernameAsync(string username)
         {
-            return await _userManager.FindByNameAsync(username);
+            return await _userManager.Users.AsNoTracking().FirstOrDefaultAsync(usrnm=>usrnm.UserName == username);
         }
         public async Task<bool> PhoneNumberExistsAsync(string phoneNumber)
         {
             return await _userManager.Users
+                .AsNoTracking()
                 .AnyAsync(u => u.PhoneNumber == phoneNumber);
         }
 

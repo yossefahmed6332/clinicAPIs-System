@@ -57,12 +57,12 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository.NonMedicalStaffRepos
 
         public async Task<List<Receptionist>> GetAllReceptionistsAsync()
         {
-            return await _context.TReceptionists.ToListAsync();
+            return await _context.TReceptionists.AsNoTracking().ToListAsync();
         }
 
         public async Task<Receptionist?> GetReceptionistAsync(int id)
         {
-            return await _context.TReceptionists.FindAsync(id);
+            return await _context.TReceptionists.AsNoTracking().FirstOrDefaultAsync(u=>u.Id ==id);
         }
 
         public async Task<Receptionist> UpdateReceptionistAsync(
