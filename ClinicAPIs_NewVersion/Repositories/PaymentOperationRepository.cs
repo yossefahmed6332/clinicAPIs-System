@@ -22,21 +22,21 @@ namespace clinicAPIsSystem.RepositoryService
 
         public async Task<List<PaymentOperation>> GetAllPaymentOperationsAsync()
         {
-            return await _context.TPaymentOperations.ToListAsync();
+            return await _context.TPaymentOperations.AsNoTracking().ToListAsync();
         }
 
         public async Task<PaymentOperation?> GetPaymentOperationAsync(int id)
         {
-            return await _context.TPaymentOperations.FindAsync(id);
+            return await _context.TPaymentOperations.AsNoTracking().FirstOrDefaultAsync(po => po.Id == id);
         }
         public async Task<List<PaymentOperation>> GetPaymentOperationsByPatientIdAsync(int patientId)
         {
-            return await _context.TPaymentOperations.Where(po => po.PatientId == patientId).ToListAsync();
+            return await _context.TPaymentOperations.AsNoTracking().Where(po => po.PatientId == patientId).ToListAsync();
         }
 
         public async Task<List<PaymentOperation>> GetPaymentOperationsByAccountantIdAsync(int accountantId)
         {
-            return await _context.TPaymentOperations.Where(po => po.AccountantId == accountantId).ToListAsync();
+            return await _context.TPaymentOperations.AsNoTracking().Where(po => po.AccountantId == accountantId).ToListAsync();
         }
 
 

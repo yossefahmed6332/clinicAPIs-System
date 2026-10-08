@@ -20,38 +20,39 @@ namespace clinicAPIsSystem.RepositoryService
         }
         public async Task<List<Appointment>> GetAllAppointmentsAsync()
         {
-            return await _context.TAppointments.ToListAsync();
+            return await _context.TAppointments.AsNoTracking().ToListAsync();
         }
         public async Task<Appointment?> GetAppointmentAsync(int id)
         {
-            return await _context.TAppointments.FindAsync(id);
+            return await _context.TAppointments.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
         }
         public async Task<List<Appointment>> GetAppointmentsByStatusAsync(AppointmentStatus status)
         {
-            return await _context.TAppointments.Where(a => a.Status == status).ToListAsync();
+            return await _context.TAppointments.AsNoTracking().Where(a => a.Status == status).ToListAsync();
         }
 
         public async Task<List<Appointment>> GetAppointmentsForUser(int userId)
         {
-            return await _context.TAppointments.Where(a => a.PatientId == userId || a.DoctorId == userId || a.NurseId == userId).ToListAsync();
+            return await _context.TAppointments.AsNoTracking().Where(a => a.PatientId == userId || a.DoctorId == userId || a.NurseId == userId).ToListAsync();
         }   
         public async Task<List<Appointment>> GetAppointmentsByDoctorIdAsync(int doctorId)
         {
-            return await _context.TAppointments.Where(a => a.DoctorId == doctorId).ToListAsync();
+            return await _context.TAppointments.AsNoTracking().Where(a => a.DoctorId == doctorId).ToListAsync();
         }
         public async Task<List<Appointment>> GetAppointmentsByNurseIdAsync(int nurseId)
         {
-            return await _context.TAppointments.Where(a => a.NurseId == nurseId).ToListAsync();
+            return await _context.TAppointments.AsNoTracking().Where(a => a.NurseId == nurseId).ToListAsync();
         }
         public async Task<List<Appointment>> GetAppointmentsByPatientIdAsync(int patientId)
         {
-            return await _context.TAppointments.Where(a => a.PatientId == patientId).ToListAsync();
+            return await _context.TAppointments.AsNoTracking().Where(a => a.PatientId == patientId).ToListAsync();
         }
 
         //catch null reference exception in the service layer, so I don't need to catch it here
         public async Task<Appointment?> GetAppointmentInTimeRange(DateTime startDate, DateTime endDate, int doctorId,int nurseId)
         {
             return await _context.TAppointments
+                .AsNoTracking()
                 .Where(a => a.StartDate < endDate && a.EndDate > startDate && (a.DoctorId == doctorId || a.NurseId == nurseId))
                 .FirstOrDefaultAsync();
         }
