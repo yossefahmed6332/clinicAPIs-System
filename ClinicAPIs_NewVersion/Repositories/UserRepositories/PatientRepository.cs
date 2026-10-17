@@ -51,12 +51,12 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository
         public async Task<List<Patient>> GetAllPatientsAsync()
         {
 
-            return await _context.TPatients.ToListAsync();
+            return await _context.TPatients.AsNoTracking().ToListAsync();
         }
 
         public async Task<Patient?> GetPatientAsync(int id)
         {
-            return await _context.TPatients.FindAsync(id);
+            return await _context.TPatients.AsNoTracking().FirstOrDefaultAsync(p=>p.Id==id);
         }
 
 

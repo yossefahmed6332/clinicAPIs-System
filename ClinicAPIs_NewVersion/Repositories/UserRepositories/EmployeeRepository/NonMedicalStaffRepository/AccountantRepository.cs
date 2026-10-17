@@ -58,12 +58,12 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository.NonMedicalStaffRepos
 
             public async Task<List<Accountant>> GetAllAccountantsAsync()
             {
-                return await _context.TAccountants.ToListAsync();
+                return await _context.TAccountants.AsNoTracking().ToListAsync();
             }
 
             public async Task<Accountant?> GetAccountantAsync(int id)
             {
-                return await _context.TAccountants.FindAsync(id);
+                return await _context.TAccountants.AsNoTracking().FirstOrDefaultAsync(u=>u.Id == id);
             }
 
             public async Task<Accountant> UpdateAccountantAsync(

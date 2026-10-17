@@ -57,36 +57,12 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository.MedicalStaffReposito
 
         public async Task<List<Nurse>> GetAllNursesAsync()
         {
-            return await _context.TNurses.ToListAsync();
+            return await _context.TNurses.AsNoTracking().ToListAsync();
         }
 
         public async Task<Nurse?> GetNurseAsync(int id)
         {
-            return await _context.TNurses.FindAsync(id);
-        }
-
-        public async Task<(
-            ICollection<VitalSigns> vitalSignsRecorded,
-            ICollection<ExaminationResult> examinationResults,
-            ICollection<Appointment> appointments)>
-            GetNurseWithDetailsAsync(int id)
-        {
-            var vitalSignsRecorded = await _context.TVitalSigns
-                .Where(v => v.NurseId == id)
-                .ToListAsync();
-
-            var examinationResults = await _context.TExaminationResults
-                .Where(e => e.NurseId == id)
-                .ToListAsync();
-
-            var appointments = await _context.TAppointments
-                .Where(a => a.NurseId == id)
-                .ToListAsync();
-
-            return (
-                vitalSignsRecorded,
-                examinationResults,
-                appointments);
+            return await _context.TNurses.AsNoTracking().FirstOrDefaultAsync(u=>u.Id == id);
         }
 
         public async Task<Nurse> UpdateNurseAsync(Nurse nurse)

@@ -23,24 +23,24 @@ namespace clinicAPIsSystem.RepositoryService
 
         public async Task<List<VitalSigns>> GetAllVitalSignsAsync()
         {
-            return await _context.TVitalSigns.ToListAsync();
+            return await _context.TVitalSigns.AsNoTracking().ToListAsync();
         }
         
         public async Task<VitalSigns?> GetVitalSignsAsync(int id)
         {
-            return await _context.TVitalSigns.FirstOrDefaultAsync(vt=>vt.Id==id); 
+            return await _context.TVitalSigns.AsNoTracking().FirstOrDefaultAsync(vt=>vt.Id==id); 
 
         }
 
         public async Task<List<VitalSigns>> GetVitalSignsByMedicalRecordIdAsync(int medicalRecordId)
         {
-            return await _context.TVitalSigns.Where(vt=>vt.MedicalRecordId==medicalRecordId).ToListAsync();
+            return await _context.TVitalSigns.AsNoTracking().Where(vt=>vt.MedicalRecordId==medicalRecordId).ToListAsync();
 
         }
 
         public async Task<List<VitalSigns>> GetVitalSignsByNurseIdAsync(int nurseId)
         {
-            return await _context.TVitalSigns.Where(vt=>vt.NurseId==nurseId).ToListAsync();
+            return await _context.TVitalSigns.AsNoTracking().Where(vt=>vt.NurseId==nurseId).ToListAsync();
         }
         public async Task<VitalSigns> UpdateVitalSignsAsync (VitalSigns vitalSigns)
         {

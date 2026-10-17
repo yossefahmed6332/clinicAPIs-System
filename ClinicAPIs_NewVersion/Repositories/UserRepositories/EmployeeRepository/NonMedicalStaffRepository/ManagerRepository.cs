@@ -57,12 +57,12 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository.NonMedicalStaffRepos
 
         public async Task<List<Manager>> GetAllManagersAsync()
         {
-            return await _context.TManagers.ToListAsync();
+            return await _context.TManagers.AsNoTracking().ToListAsync();
         }
 
         public async Task<Manager?> GetManagerAsync(int id)
         {
-            return await _context.TManagers.FindAsync(id);
+            return await _context.TManagers.AsNoTracking().FirstOrDefaultAsync(u=> u .Id == id);
         }
 
         public async Task<Manager> UpdateManagerAsync(

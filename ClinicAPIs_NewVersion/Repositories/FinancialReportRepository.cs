@@ -20,17 +20,18 @@ namespace clinicAPIsSystem.RepositoryService
         }
         public async Task<List<FinancialReport>> GetAllFinancialReportsAsync()
         {
-            return await _context.TFinancialReports.ToListAsync();
+            return await _context.TFinancialReports.AsNoTracking().ToListAsync();
         }
 
         public async Task<FinancialReport?> GetFinancialReportAsync(int id)
         {
-            return await _context.TFinancialReports.FindAsync(id);
+            return await _context.TFinancialReports.AsNoTracking().FirstOrDefaultAsync(fr => fr.Id == id);
         }
 
         public async Task<List<FinancialReport>> GetFinancialReportsByRangeAsync(decimal min, decimal max, DateTime startDate, DateTime endDate)
         {
             return await _context.TFinancialReports
+                .AsNoTracking()
                 .Where(fr => fr.NetProfit >= min && fr.NetProfit <= max && fr.Date >= startDate && fr.Date <= endDate)
                 .ToListAsync();
         }
@@ -38,6 +39,7 @@ namespace clinicAPIsSystem.RepositoryService
         public async Task<List<FinancialReport>> GetFinancialReportsByDateRangeAsync(DateTime startDate, DateTime endDate)
         {
             return await _context.TFinancialReports
+                .AsNoTracking() 
                 .Where(fr => fr.Date >= startDate && fr.Date <= endDate)
                 .ToListAsync();
         }

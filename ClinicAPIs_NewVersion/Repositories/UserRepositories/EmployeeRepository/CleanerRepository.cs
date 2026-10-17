@@ -56,12 +56,12 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository.EmployeeRepository
          
         public async Task<List<Cleaner>> GetAllCleanersAsync()
         {
-            return await _context.TCleaners.ToListAsync(); 
+            return await _context.TCleaners.AsNoTracking().ToListAsync(); 
         }
 
         public async Task<Cleaner?> GetCleanerAsync(int id)
         {
-            return await _context.TCleaners.FirstOrDefaultAsync(a => a.Id == id);
+            return await _context.TCleaners.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task<Cleaner> UpdateCleanerAsync (Cleaner cleaner)

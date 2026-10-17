@@ -22,22 +22,23 @@ namespace clinicAPIsSystem.RepositoryService
         }
         public async Task<List<Prescription>> GetAllPrescriptionsAsync()
         {
-            return await _context.TPrescriptions.ToListAsync();
+            return await _context.TPrescriptions.AsNoTracking().ToListAsync();
         }
         public async Task<Prescription?> GetPrescriptionAsync(int id)
         {
-            return await _context.TPrescriptions.FindAsync(id);
+            return await _context.TPrescriptions.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
         }
         public async Task<List<Prescription>> GetPrescriptionsByMedicalRecordIdAsync(int medicalRecordId)
         {
             return await _context.TPrescriptions
+                .AsNoTracking() 
                 .Where(p => p.MedicalRecordId == medicalRecordId)
                 .ToListAsync();
         }
 
         public async Task<List<Prescription>> GetPrescriptionsByDoctorIdAsync(int doctorId)
         {
-            return await _context.TPrescriptions.Where(prs=>prs.DoctorId==doctorId).ToListAsync();
+            return await _context.TPrescriptions.AsNoTracking().Where(prs=>prs.DoctorId==doctorId).ToListAsync();
         }
 
         public async Task<Prescription> UpdatePrescriptionAsync(Prescription prescription)

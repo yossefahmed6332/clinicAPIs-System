@@ -19,19 +19,19 @@ namespace clinicAPIsSystem.RepositoryService
         }
         public async Task<List<ExaminationResult>> GetAllExaminationResultsAsync()
         {
-            return await _context.TExaminationResults.ToListAsync();
+            return await _context.TExaminationResults.AsNoTracking().ToListAsync();
         }
         public async Task<ExaminationResult?> GetExaminationResultAsync(int id)
         {
-            return await _context.TExaminationResults.FindAsync(id);
+            return await _context.TExaminationResults.AsNoTracking().FirstOrDefaultAsync(er => er.Id == id);
         }
         public async Task<List<ExaminationResult>> GetExaminationResultsByNurseIdAsync(int nurseId)
         {
-            return await _context.TExaminationResults.Where(er => er.NurseId == nurseId).ToListAsync();
+            return await _context.TExaminationResults.AsNoTracking().Where(er => er.NurseId == nurseId).ToListAsync();
         }
         public async Task<List<ExaminationResult>> GetExaminationResultsByMedicalRecordIdAsync  (int medicalRecordId)
         {
-            return await _context.TExaminationResults.Where(er => er.MedicalRecordId == medicalRecordId).ToListAsync();
+            return await _context.TExaminationResults.AsNoTracking().Where(er => er.MedicalRecordId == medicalRecordId).ToListAsync();
         }
         public async Task<ExaminationResult> UpdateExaminationResultAsync(ExaminationResult examinationResult)
         {

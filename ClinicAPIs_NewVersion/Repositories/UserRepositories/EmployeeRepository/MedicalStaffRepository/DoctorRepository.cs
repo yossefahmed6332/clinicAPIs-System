@@ -57,30 +57,15 @@ namespace clinicAPIsSystem.RepositoryService.UserRepository.MedicalStaffReposito
 
         public async Task<List<Doctor>> GetAllDoctorsAsync()
         {
-            return await _context.TDoctors.ToListAsync();
+            return await _context.TDoctors.AsNoTracking().ToListAsync();
         }
 
         public async Task<Doctor?> GetDoctorAsync(int id)
         {
-            return await _context.TDoctors.FindAsync(id);
+            return await _context.TDoctors.AsNoTracking().FirstOrDefaultAsync(u=>u.Id == id);
         }
 
-        public async Task<(
-            ICollection<Appointment> appointments,
-            ICollection<Prescription> prescriptions)>
-            GetDoctorWithDetailsAsync(int id)
-        {
-            var appointments = await _context.TAppointments
-                .Where(a => a.DoctorId == id)
-                .ToListAsync();
-
-            var prescriptions = await _context.TPrescriptions
-                .Where(p => p.DoctorId == id)
-                .ToListAsync();
-
-            return (appointments, prescriptions);
-        }
-
+ 
         public async Task<Doctor> UpdateDoctorAsync(
             Doctor doctor)
         {
