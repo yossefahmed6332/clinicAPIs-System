@@ -1,4 +1,6 @@
-#region used name space
+
+#region Used Namespaces
+
 using clinicAPIsSystem.Data;
 using clinicAPIsSystem.Data.Seeder;
 using clinicAPIsSystem.IRepositoryService;
@@ -30,7 +32,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+
 #endregion
+
 var builder = WebApplication.CreateBuilder(args);
 
 #region Controllers
@@ -66,10 +70,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
 
 #endregion
 
-
 #region Dependency Injection
-//depency injection for repository services
-//depenct injection for users repositories
+
+// User repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
@@ -79,7 +82,8 @@ builder.Services.AddScoped<IReceptionistRepository, ReceptionistRepository>();
 builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
 builder.Services.AddScoped<INurseRepository, NurseRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-//depenct injection for other repositories
+
+// Other repositories
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IExaminationResultRepository, ExaminationResultRepository>();
 builder.Services.AddScoped<IFinancialReportRepository, FinancialReportRepository>();
@@ -87,11 +91,12 @@ builder.Services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
 builder.Services.AddScoped<IPaymentOperationRepository, PaymentOperationRepository>();
 builder.Services.AddScoped<IPrescriptionRepository, PrescriptionRepository>();
 builder.Services.AddScoped<IVitalSignsRepository, VitalSignsRepository>();
+
+// Seeders
 builder.Services.AddScoped<RoleSeeder>();
 builder.Services.AddScoped<AdminSeeder>();
 
-//dependency injection for services
-//dependency injection for non-user services
+// Non-user services
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IExaminationResultService, ExaminationResultService>();
 builder.Services.AddScoped<IFinancialReportService, FinancialReportService>();
@@ -99,7 +104,8 @@ builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
 builder.Services.AddScoped<IPaymentOperationService, PaymentOperationService>();
 builder.Services.AddScoped<IPrescriptionService, PrescriptionService>();
 builder.Services.AddScoped<IVitalSignsService, VitalSignsService>();
-//dependency injection for user services
+
+// User services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
@@ -109,25 +115,30 @@ builder.Services.AddScoped<IReceptionistService, ReceptionistService>();
 builder.Services.AddScoped<IManagerService, ManagerService>();
 builder.Services.AddScoped<INurseService, NurseService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
-//depency injection for auth service 
+
+// Authentication service
 builder.Services.AddScoped<ILoginService, LoginService>();
+
 #endregion
 
 #region AutoMapper
+
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<UserMappingProfile>();
 });
+
 #endregion
-
-
 
 #region JWT Key Validation
 
 var jwtKey = builder.Configuration["JWT:Key"];
+
 if (string.IsNullOrWhiteSpace(jwtKey))
 {
-    throw new InvalidOperationException("JWT:Key is missing from configuration. Please set it in appsettings.json or environment variables.");
+    throw new InvalidOperationException(
+        "JWT:Key is missing from configuration. " +
+        "Please set it in appsettings.json or environment variables.");
 }
 
 #endregion
@@ -136,33 +147,33 @@ if (string.IsNullOrWhiteSpace(jwtKey))
 
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme =
+        JwtBearerDefaults.AuthenticationScheme;
+
+    options.DefaultChallengeScheme =
+        JwtBearerDefaults.AuthenticationScheme;
+
+    options.DefaultScheme =
+        JwtBearerDefaults.AuthenticationScheme;
 })
-    .AddJwtBearer(options =>
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            // Validate JWT
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
 
-            // JWT Configuration
-            ValidIssuer = builder.Configuration["JWT:Issuer"],
-            ValidAudience = builder.Configuration["JWT:Audience"],
+        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidAudience = builder.Configuration["JWT:Audience"],
 
-            // Secret Key
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtKey)
-            ),
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(jwtKey)),
 
-            // Remove default 5-minute tolerance
-            ClockSkew = TimeSpan.Zero
-        };
-    });
+        ClockSkew = TimeSpan.Zero
+    };
+});
 
 #endregion
 
@@ -179,48 +190,45 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy.WithOrigins(
-                builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
-                ?? new[] { "http://localhost:3000" }
-              )
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+                builder.Configuration
+                    .GetSection("Cors:AllowedOrigins")
+                    .Get<string[]>()
+                ?? new[] { "http://localhost:3000" })
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 
 #endregion
 
 #region Global Exception Handling
+
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+
 #endregion
 
 #region Memory Cache
+
 builder.Services.AddMemoryCache();
+
 #endregion
 
 #region OpenAPI
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 builder.Services.AddOpenApi();
 
 #endregion
 
 var app = builder.Build();
-#region swagger 
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.UseSwaggerUI();
-}
+#region Global Exception Handler Middleware
 
-#endregion 
-
-#region Exception handler 
 app.UseExceptionHandler();
+
 #endregion
 
-#region Seeder
+#region Database Seeders
 
 using (var scope = app.Services.CreateScope())
 {
@@ -235,13 +243,23 @@ using (var scope = app.Services.CreateScope())
 
 #endregion
 
-
-#region Middleware
+#region OpenAPI and Swagger UI
 
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint(
+            "/openapi/v1.json",
+            "Clinic API V1");
+    });
 }
+
+#endregion
+
+#region Middleware
 
 app.UseHttpsRedirection();
 
@@ -253,6 +271,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
-
 #endregion
+
+app.Run();
